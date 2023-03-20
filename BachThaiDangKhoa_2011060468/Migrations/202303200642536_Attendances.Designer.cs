@@ -7,13 +7,13 @@ namespace BachThaiDangKhoa_2011060468.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class CreateTableCoursesAndCategories : IMigrationMetadata
+    public sealed partial class Attendances : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(CreateTableCoursesAndCategories));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Attendances));
         
         string IMigrationMetadata.Id
         {
-            get { return "202303060730440_CreateTableCoursesAndCategories"; }
+            get { return "202303200642536_Attendances"; }
         }
         
         string IMigrationMetadata.Source
