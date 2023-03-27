@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Data.Entity;
 using BachThaiDangKhoa_2011060468.ViewModels;
+using Microsoft.AspNet.Identity;
 
 namespace BachThaiDangKhoa_2011060468.Controllers
 {
@@ -39,11 +40,20 @@ namespace BachThaiDangKhoa_2011060468.Controllers
             return View();
         }
 
-        public ActionResult Contact()
+        [Authorize]
+        public ActionResult Attending()
         {
-            ViewBag.Message = "Your contact page.";
+            var userId = User.Identity.GetUserId();
 
-            return View();
+            var courses = _dbContext.Attendances.Where(a => a.AttendeeId == userId).Select(a => a.Course).Include(l => l.Lecturer).Include(l => l.Category).ToList();
+
+            var viewModel = new CoursesViewModel
+            {
+                UpcommingCourses = courses,
+                ShowAction = User.Identity.IsAuthenticated
+            };
+
+            return View(viewModel);
         }
     }
 }
